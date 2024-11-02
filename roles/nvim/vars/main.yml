@@ -1,0 +1,17 @@
+neovim_repo: "https://github.com/neovim/neovim.git"
+neovim_src_dir: "/usr/local/src/neovim"
+build_type: "Release"
+dependencies:
+  - ninja-build
+  - gettext
+  - libtool
+  - libtool-bin
+  - autoconf
+  - automake
+  - cmake
+  - g++
+  - pkg-config
+  - unzip
+  - curl
+  - doxygen
+  - git

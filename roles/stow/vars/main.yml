@@ -1,0 +1,5 @@
+github_username: "ruspatel1996"
+dotfiles_repo: "https://github.com/{{ github_username }}/dotfiles.git"
+dotfiles_dir: "{{ ansible_env.HOME }}/dotfiles"
+dependencies:
+  - stow

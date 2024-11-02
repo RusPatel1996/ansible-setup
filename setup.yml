@@ -1,0 +1,8 @@
+- name: Set up development environment
+  hosts: localhost
+  become: yes
+  roles:
+    - common
+    - nvim
+    - git
+#    - stow

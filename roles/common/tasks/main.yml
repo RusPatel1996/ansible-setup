@@ -1,0 +1,10 @@
+- name: Update apt cache (Debian/Ubuntu)
+  apt:
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Ensure build dependencies are installed (Debian/Ubuntu)
+  apt:
+    name: "{{ dependencies }}"
+    state: present
+  when: ansible_os_family == "Debian"

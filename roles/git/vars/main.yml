@@ -1,0 +1,14 @@
+# User-specific variables
+git_user_name: "Rush Patel"
+git_core_editor: "nvim"  # Replace with your preferred editor
+git_signing_key_id: ""  # Last 8 characters of your GPG key ID
+
+# Paths to your existing keys (if you have them)
+gpg_private_key_file: ""  # Leave empty to generate a new key
+gpg_public_key_file: ""    # Leave empty to generate a new key
+
+ssh_private_key_file: ""  # Leave empty to generate a new key
+ssh_public_key_file: ""  # Leave empty to generate a new key
+
+# GitHub-specific variables
+github_username: "ruspatel1996"

@@ -1,0 +1,46 @@
+- name: Update apt cache (Debian/Ubuntu)
+  apt:
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Ensure build dependencies are installed (Debian/Ubuntu)
+  apt:
+    name: "{{ dependencies }}"
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Create Neovim source directory
+  file:
+    path: "{{ neovim_src_dir }}"
+
+    state: directory
+
+    mode: '0755'
+
+- name: Clone Neovim repository
+  git:
+    repo: "{{ neovim_repo }}"
+    dest: "{{ neovim_src_dir }}"
+    version: "master"
+    update: yes
+
+- name: Clean previous build artifacts
+  shell: make clean
+  args:
+
+    chdir: "{{ neovim_src_dir }}"
+  ignore_errors: yes
+
+- name: Build Neovim
+  shell: |
+    make CMAKE_BUILD_TYPE={{ build_type }}
+  args:
+    chdir: "{{ neovim_src_dir }}"
+  environment:
+    MAKEFLAGS: "-j{{ ansible_processor_vcpus | default(2) }}"
+
+- name: Install Neovim
+  shell: |
+    make install
+  args:
+    chdir: "{{ neovim_src_dir }}"
