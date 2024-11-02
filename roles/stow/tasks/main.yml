@@ -1,3 +1,9 @@
+- name: Ensure build dependencies are installed (Debian/Ubuntu)
+  apt:
+    name: "{{ dependencies }}"
+    state: present
+  when: ansible_os_family == "Debian"
+
 - name: Clone dotfiles repository
   git:
     repo: "{{ dotfiles_repo }}"
@@ -10,9 +16,9 @@
     stow {{ item }}
   args:
     chdir: "{{ dotfiles_dir }}"
-    loop:
-      - nvim
-      - tmux
-      - bash
-      - git
-    tags: stow
+  loop:
+    - nvim
+    - tmux
+    - bash
+    - git
+  tags: stow
